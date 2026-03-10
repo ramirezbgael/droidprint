@@ -1,0 +1,27 @@
+{
+  "name": "droidprint",
+  "version": "1.0.0",
+  "description": "WhatsApp Print Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "tauri:build": "tauri build"
+  },
+  "dependencies": {
+    "canvas": "^3.2.1",
+    "express": "^4.18.2",
+    "pdf-lib": "^1.17.1",
+    "pdf-to-printer": "^5.7.0",
+    "pdfjs-dist": "^4.8.69",
+    "qrcode": "^1.5.3",
+    "sharp": "^0.33.5",
+    "whatsapp-web.js": "^1.34.6"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+messages-store.json
+printers.json
+print/
+.wwebjs_auth/
+.wwebjs_cache/

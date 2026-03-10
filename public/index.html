@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona Asist Print - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Grain Texture Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- CPU Mode Indicator -->
+    <div class="cpu-indicator">
+        <span class="cpu-dot"></span>
+        <span>CPU mode: light</span>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Clients Column -->
+        <aside class="clients-column">
+            <div class="clients-header">
+                <div class="logo">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <path d="M6 14h12v8H6z"/>
+                    </svg>
+                    <h1>Zona Asist Print</h1>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="clients">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Clientes</span>
+                </a>
+                <a href="#" class="nav-item" data-view="settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3"/>
+                    </svg>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+
+            <div class="clients-content" id="clients-content">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="clients-search" placeholder="Buscar cliente...">
+                </div>
+
+                <div class="clients-list" id="clients-list">
+                    <!-- Clients will be rendered here -->
+                </div>
+            </div>
+
+            <div class="clients-footer">
+                <div class="whatsapp-status">
+                    <div class="status-pill connected">
+                        <span class="status-dot"></span>
+                        <span>WhatsApp: Conectado</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Column / Settings Column -->
+        <section class="chat-column" id="main-column">
+            <!-- Chat View -->
+            <div class="view-content" id="chat-view">
+                <div class="chat-header" id="chat-header">
+                    <div class="empty-chat-header">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <p>Selecciona un cliente para ver el chat</p>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="empty-chat">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <p>Selecciona un cliente para ver el chat</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div class="view-content hidden" id="settings-view">
+                <div class="settings-header">
+                    <h2>Configuración</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h3>Estado de WhatsApp</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="status-display" id="status-display">
+                                <div class="status-icon connected">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22 4 12 14.01 9 11.01"/>
+                                    </svg>
+                                </div>
+                                <div class="status-text">
+                                    <div class="status-title">Conectado</div>
+                                    <div class="status-subtitle" id="status-subtitle">Sincronizado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h3>Impresoras</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="printers-config">
+                                    <div class="printers-list" id="settings-printers-list">
+                                        <!-- Lista generada por JS -->
+                                    </div>
+                                    <button type="button" class="settings-btn" id="printers-refresh-btn">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="23 4 23 10 17 10"/>
+                                            <polyline points="1 20 1 14 7 14"/>
+                                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                                        </svg>
+                                        Detectar nuevas
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h3>Acciones</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <button class="settings-btn" id="logout-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                        <polyline points="16 17 21 12 16 7"/>
+                                        <line x1="21" y1="12" x2="9" y2="12"/>
+                                    </svg>
+                                    Desvincular WhatsApp
+                                </button>
+                                <button class="settings-btn" id="force-qr-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <path d="M9 9h6v6H9z"/>
+                                    </svg>
+                                    Forzar QR nuevo
+                                </button>
+                                <button class="settings-btn" id="restart-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10"/>
+                                        <polyline points="1 20 1 14 7 14"/>
+                                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                                    </svg>
+                                    Reiniciar servicio
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Files Column / Status Column -->
+        <section class="files-column" id="side-column">
+            <!-- Files View -->
+            <div class="view-content" id="files-view">
+                <div class="files-header">
+                    <h2>Selección</h2>
+                    <div class="files-summary" id="files-summary">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <div class="selected-files-list" id="selected-files-list">
+                    <div class="empty-files">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        <p>Selecciona archivos del chat</p>
+                    </div>
+                </div>
+
+                <div class="preview-area" id="preview-area">
+                    <div class="preview-empty">
+                        <p>Vista previa</p>
+                    </div>
+                </div>
+
+                <!-- Print Bar (Fixed Bottom) -->
+                    <div class="print-bar">
+                    <div class="print-controls">
+                        <div class="control-group control-printer">
+                            <label>Impresora</label>
+                            <div class="printer-select-row">
+                                <select id="printer-select">
+                                    <!-- Options will be populated by JS -->
+                                </select>
+                                <button type="button" class="printer-refresh-inline-btn" id="printer-refresh-inline-btn" title="Buscar nuevas impresoras">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10"/>
+                                        <polyline points="1 20 1 14 7 14"/>
+                                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Copias</label>
+                            <input type="number" id="copies-input" min="1" max="99" value="1">
+                        </div>
+                        <div class="control-group">
+                            <label>Páginas</label>
+                            <select id="pages-mode-select">
+                                <option value="all">Todas</option>
+                                <option value="first">1ª hoja</option>
+                                <option value="odd">Impares</option>
+                                <option value="even">Pares</option>
+                                <option value="range">Rango…</option>
+                            </select>
+                        </div>
+                        <div class="control-group" id="pages-range-group" style="display:none;">
+                            <label>Rango</label>
+                            <input type="text" id="pages-range-input" placeholder="1-3,5,7-9">
+                        </div>
+                        <div class="control-group">
+                            <label>Tamaño</label>
+                            <select id="paper-size-select">
+                                <option value="letter">Carta</option>
+                                <option value="legal">Oficio</option>
+                                <option value="a4">A4</option>
+                            </select>
+                        </div>
+                        <div class="control-group toggle-control">
+                            <label>Doble cara</label>
+                            <div class="toggle-switch" id="double-sided-toggle"></div>
+                        </div>
+                    </div>
+                    <div class="print-actions">
+                        <button class="print-mode-btn" id="print-bw-btn">BN</button>
+                        <button class="print-mode-btn" id="print-color-btn">Color</button>
+                        <button class="print-main-btn" id="print-main-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"/>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                            Imprimir selección
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status View -->
+            <div class="view-content hidden" id="status-view">
+                <div class="status-view-header">
+                    <h2>Estado</h2>
+                </div>
+                <div class="status-view-content">
+                    <div class="qr-container" id="qr-container">
+                        <div class="qr-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <path d="M9 9h6v6H9z"/>
+                            </svg>
+                            <p>QR no disponible</p>
+                        </div>
+                    </div>
+                    <div class="status-info" id="status-info">
+                        <div class="status-info-item">
+                            <span class="status-info-label">Estado</span>
+                            <span class="status-info-value" id="status-info-value">Conectado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
